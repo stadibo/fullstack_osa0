@@ -1,0 +1,30 @@
+title Käyttäjä luo uuden muistiinpanon single page app-versiossa
+
+kayttaja->selain:
+
+note left of selain
+kayttaja kirjottaa tekstia ja painaa nappia 'Talleta'
+end note
+
+selain->+selain: suorittaa spa.js sisältämää koodia
+
+selain->palvelin: POST fullstack-exampleapp.herokuapp.com/new_note_spa
+
+palvelin->palvelin: uusi 'note' lisätään palvelimella suoritettavaan koodin
+
+palvelin-->selain: status 201, 'note created'
+
+selain->-selain:
+
+note left of selain
+ Lisätty muistiinpano talennetaan tilapäiseen arrayhin jota 
+ ylläpidetään selaimella suoritettavassa spa.js koodissa. 
+ Muistiinpanot luodaan uudelleen suorittamalla loput spa.js 
+ koodista. Eli data.json tiedostoa ei enää haettu palvelimelta.
+end note
+
+note left of selain
+ selain näyttää uudelleen renderöity HTML doc
+ johon on upotettu koodin spa.js luoma lista 
+ muistiinpanoista
+end note

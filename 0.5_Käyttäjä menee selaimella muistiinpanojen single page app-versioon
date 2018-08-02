@@ -1,0 +1,54 @@
+title Käyttäjä menee selaimella muistiinpanojen single page app-versioon
+
+kayttaja->selain:
+
+note left of selain
+kayttaja kirjottaa osoiteriville
+fullstack-exampleapp.herokuapp.com/spa
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/spa
+note left of palvelin
+muodostetaan HTML sivu
+end note
+palvelin-->selain: status 200, sivun HTML-koodi
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.css
+
+note left of palvelin
+haetaan HTML:n headerin sisällä olevan 
+link tagin määrittelemän sivun 'main.css'
+end note
+
+palvelin-->selain: status 200, main.css
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/spa.js
+
+note left of palvelin
+haetaan HTML:n headerin sisällä olevan 
+script tagin määrittelemän koodi 'spa.js'
+end note
+
+palvelin-->selain: status 200, spa.js
+
+selain->+selain: suorittaa spa.js sisältämää koodia
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/data.json
+
+palvelin-->selain: status 200, data.json
+
+selain->-selain:
+
+note left of selain
+ muistiinpanot luodaan suorittamalla loput spa.js 
+ koodista, ja data.json sisältämä data on nyt 
+ tallennettu tilapäiseen arrayhin jota ylläpidetään
+ selaimella suoritettavassa spa.js koodissa. Eli
+ data.json tiedostoa ei enää tarvitse hakea palvelimelta
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ johon on upotettu palvelimelta haetun koodin 
+ luoma listamuistiinpanoista
+end note
